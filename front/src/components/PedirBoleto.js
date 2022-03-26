@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
-import { fetchRandom, fetchLoteria, fetchBoletos } from '../actions';
+import { fetchLoteria } from '../actions';
 
-const From = (props) => {// component stateless
+export const PedirBoleto = (props) => {// component stateless
   const [state, setState] = useState();
   const onSubmit = (e) => {
     e.preventDefault();
-    //props.dispatch(fetchRandom(state));
     props.dispatch(fetchLoteria());
-    
   };
   return <div>
-    <form onSubmit={onSubmit}>
+    {/*<form onSubmit={onSubmit}>
       <label htmlFor="list">Ingrese una lista separada por comas:</label>
       <br />
       <textarea id="list" style={{ width: "300px", height: "120px" }} 
@@ -21,16 +19,18 @@ const From = (props) => {// component stateless
       <button type="submit" disabled={props.loading}>
         Enviar
       </button>
-    </form>
+      
+</form> */}
+    
+    <button onClick={onSubmit}>Comprar Boleto</button>
   </div>
 }
 
-
 const stateMapToPros = state => {
-  return {
-    loading: state.view.loading
+    return {
+      loading: state.view.loading
+    }
   }
-}
-
-
-export default connect(stateMapToPros)(From)
+  
+  
+  export default connect(stateMapToPros)(PedirBoleto)
